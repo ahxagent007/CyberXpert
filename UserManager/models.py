@@ -55,3 +55,6 @@ class UserAccount(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return self.is_superuser
+
+    def __str__(self):
+        return self.name + ' ( '+self.email+' )'

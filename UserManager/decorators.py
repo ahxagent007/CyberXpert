@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from .models import UserAccount
 
+
+
 def is_user_logged_in(user):
     if user.is_authenticated:
         return True

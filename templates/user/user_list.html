@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+
+<div class="container">
+    <div class="row" id="cancel-row">
+
+        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header mt-3 mb-3 pb-3 ">
+                    <div class="row" >
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12" style=" padding-top: 25px;">
+                            <!--<h3 class="text-center" style="color:#AC8D68">Race Results</h3>-->
+                        </div>
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12" style=" padding-top: 25px;">
+                            <!-- start wpo-fun-fact-section -->
+                            <section class="wpo-fun-fact-section section-padding">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col col-xs-12">
+                                            <div class="wpo-fun-fact-grids clearfix">
+
+                                                <div class="grid">
+                                                    <div class="info">
+                                                        <h3>Users List</h3>
+                                                        <a href="{% url 'UserManager:CreateUser' %}" class="btn btn-warning">Add User</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <!-- end wpo-fun-fact-section -->
+                        </div>
+                    </div>
+                </div>
+                <div class="widget-content widget-content-area">
+                    <div class="table-responsive mb-4">
+                        <table id="default-ordering" class="table table-striped table-bordered table-hover" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">User Name</th>
+                                    <th class="text-center">Role</th>
+                                    <th class="text-center">Last Login</th>
+                                    <th class="invisible"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in all_user %}
+                                    <tr>
+                                        <th class="text-center">{{user.name}}</th>
+                                        <th class="text-center">{{user.role}}</th>
+                                        <th class="text-center">{{user.last_login}}</th>
+                                        <th class="text-center"><a href="#" class="btn btn-danger">Delete</a><br></th>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="text-center">User Name</th>
+                                    <th class="text-center">Role</th>
+                                    <th class="text-center">Last Login</th>
+                                    <th class="invisible"></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="{% static 'plugins/table/datatable/datatables_alphacue.js' %}"></script>
+    <script>
+        $('#default-ordering').DataTable( {
+            "language": {
+                "paginate": { "previous": "<i class='flaticon-arrow-left-1'></i>", "next": "<i class='flaticon-arrow-right'></i>" },
+                "info": "Showing page _PAGE_ of _PAGES_"
+            }, "order": [[ 0, "asc" ]],
+            drawCallback: function () { $('.dataTables_paginate > .pagination').addClass(' pagination-style-13 pagination-bordered mb-5'); }
+	    } );
+    </script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+{% endblock %}
