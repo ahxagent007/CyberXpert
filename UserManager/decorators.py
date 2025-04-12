@@ -18,10 +18,9 @@ def is_admin_logged_in(user):
         else:
             return False
     else:
-        print()
         return False
 
-def login_access_only(view_to_return="User:Login"):
+def login_access_only(view_to_return="UserManager:Login"):
     def decorator(view):
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
@@ -33,7 +32,7 @@ def login_access_only(view_to_return="User:Login"):
         return _wrapped_view
     return decorator
 
-def admin_access_only(view_to_return="User:Login"):
+def admin_access_only(view_to_return="UserManager:Login"):
     def decorator(view):
         @wraps(view)
         def _wrapped_view(request, *args, **kwargs):
