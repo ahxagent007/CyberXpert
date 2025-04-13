@@ -41,7 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'UserManager'
+    'UserManager',
+    'Lesson',
+    'Library',
+    'django_otp',
+    'django_otp.plugins.otp_static',  # For static devices (like backup tokens)
+    'django_otp.plugins.otp_totp',  # For TOTP (e.g., Google Authenticator)
+    'two_factor',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_otp.middleware.OTPMiddleware',
 ]
 
 ROOT_URLCONF = 'CyberXpert.urls'
@@ -138,4 +145,7 @@ MEDIAFILES_DIRS = (os.path.join(BASE_DIR, 'media'),)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'UserManager.UserAccount'
-LOGIN_URL = '/user/login'
+#LOGIN_URL = '/user/login'
+
+LOGIN_URL = 'two_factor:login'
+LOGIN_REDIRECT_URL = '/'

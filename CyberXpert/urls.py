@@ -19,10 +19,14 @@ from django.urls import path
 from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
+from two_factor.urls import urlpatterns as tf_urls
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(('UserManager.urls', 'UserManager'), namespace='UserManager')),
     path('', include(('Dashboard.urls', 'Dashboard'), namespace='Dashboard')),
+    path('lesson/', include(('Lesson.urls', 'Lesson'), namespace='Lesson')),
+    path('library/', include(('Library.urls', 'Library'), namespace='Library')),
+    path('mfa/', include(tf_urls, namespace='two_factor')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

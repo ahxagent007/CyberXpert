@@ -4,6 +4,7 @@ from .models import UserAccount
 from .decorators import login_access_only, admin_access_only
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
+from django.contrib import messages
 
 def Login(request):
 
@@ -12,7 +13,6 @@ def Login(request):
         data = request.POST
         email = data['email']
         password = data['password']
-        #password = hashlib.md5(data['password'].encode('utf-8')).hexdigest()
         exists = UserAccount.objects.filter(email=email).exists()
 
         if not exists:
@@ -58,7 +58,7 @@ def Logout(request):
 
     logout(request)
 
-    return redirect('Dashboard:Login')
+    return redirect('UserManager:Login')
 
 #@admin_access_only()
 def CreateUser(request):
