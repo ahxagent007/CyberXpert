@@ -1,5 +1,13 @@
 from django.shortcuts import render
 
-# Create your views here.
+
 def Dashboard(request):
-    return render(request=request, context={}, template_name='dashboard/dashboard.html')
+    data = {
+        'level_progress': 50,
+        'level_count': 3,
+        'quiz_count': 2
+    }
+    return render(request=request, context=data, template_name='dashboard/dashboard.html')
+
+def Message(request):
+    NotImplemented

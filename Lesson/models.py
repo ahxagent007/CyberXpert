@@ -1,5 +1,5 @@
 from django.db import models
-
+from UserManager.models import UserAccount
 
 class Level(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -17,3 +17,7 @@ class Questions(models.Model):
     option_4 = models.CharField(max_length=255)
     answer = models.CharField(max_length=255)
 
+class AssignLevels(models.Model):
+    id = models.IntegerField(primary_key=True)
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    Level = models.ForeignKey(Level, on_delete=models.CASCADE)

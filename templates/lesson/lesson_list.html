@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block custom_links %}
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="col-lg-12 col-md-12 layout-spacing">
+    <div class="statbox widget box box-shadow">
+        <div class="widget-header">
+            <div class="row">
+                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                    <h4>Quiz Levels</h4>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content widget-content-area">
+            <div class="table-responsive">
+                <table class="table mb-12">
+                  <caption>List of all assign lessons</caption>
+                  <thead>
+                        <tr>
+                            <th class="align-center">Level #</th>
+                            <th>Name</th>
+                            <th class="">Status</th>
+                            <th>Take Quiz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, value in levels.items %}
+                        <tr>
+                            <td class="align-center">{{value.number}}</td>
+                            <td class="text-primary">{{value.name}}</td>
+                            <td class=""><span class=" shadow-none badge badge-success badge-pill">Complete</span></td>
+                            <td><a href="#" class="btn btn-success">Quiz</a></td>
+                        </tr>
+                        {% endfor %}
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+{% block custom_js %}
+
+{% endblock %}
