@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block body %}
+<div class="container">
+    <div class="statbox widget box box-shadow">
+
+        <div class="col-lg-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+            <div class="statbox widget box box-shadow">
+                <div class="widget-header">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                            <h2>{{level}} Questions</h2>
+                            <h4>{{level_description}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form action="{% url 'Lesson:Quiz' level_no %}" method="post">
+
+            {% for question in question_list %}
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-header">
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                    <h4>{{question.question}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-content widget-content-area">
+    <!--                        <p>Use <code>.radio-classic-*</code> class to make classic.</p>-->
+
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-classic-success">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <span class="new-control-indicator"></span>{{question.option_1}}
+                                </label>
+                            </div>
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-classic-success">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <span class="new-control-indicator"></span>{{question.option_2}}
+                                </label>
+                            </div>
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-classic-success">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <span class="new-control-indicator"></span>{{question.option_3}}
+                                </label>
+                            </div>
+                            <div class="n-chk">
+                                <label class="new-control new-radio radio-classic-success">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <span class="new-control-indicator"></span>{{question.option_4}}
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <button class="btn btn-button-7 btn-rounded" type="submit">Submit Answer</button>
+
+        </form>
+
+
+    </div>
+
+    <div></div>
+</div>
+
+{% endblock %}
+
+{% block custom_js %}
+
+{% endblock %}

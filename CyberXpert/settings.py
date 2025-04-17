@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',  # For static devices (like backup tokens)
     'django_otp.plugins.otp_totp',  # For TOTP (e.g., Google Authenticator)
     'two_factor',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def domain(request, domain_no):
+    domain = Domain.objects.get(domain_no=domain_no)
+    data = {
+        'domain': domain
+    }
+    return render(request=request, template_name='library/domain.html', context=data)

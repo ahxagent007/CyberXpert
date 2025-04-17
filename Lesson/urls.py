@@ -2,7 +2,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns=[
-    path('quiz', Quiz, name='Quiz')
+    path('quiz/<int:level_no>', Quiz, name='Quiz')
 
 
 ]
