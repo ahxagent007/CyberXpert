@@ -7,6 +7,6 @@ class UserAccountForm(forms.ModelForm):
         model = UserAccount
         fields = ['name', 'email', 'password', 'role']
 
-        widgets = {
-            'published_date': forms.SelectDateWidget,
-        }
+        # widgets = {
+        #     'published_date': forms.SelectDateWidget,
+        # }

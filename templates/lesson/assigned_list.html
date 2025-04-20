@@ -14,33 +14,29 @@
         <div class="widget-header">
             <div class="row">
                 <div class="col-xl-12 col-md-12 col-sm-12 col-12">
-                    <h4>Assign Levels</h4>
+                    <h4>Quiz Levels</h4>
                 </div>
             </div>
         </div>
         <div class="widget-content widget-content-area">
             <div class="table-responsive">
                 <table class="table mb-12">
-                  <caption>List of all assign lessons</caption>
+                  <caption>List of all assign users</caption>
                   <thead>
                         <tr>
+                            <th class="align-center">User Name</th>
                             <th class="align-center">Level #</th>
-                            <th>Name</th>
-                            <th class="">Status</th>
-                            <th>Take Quiz</th>
+                            <th class="align-center">Level Name</th>
+                            <th class="align-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for key, value in levels.items %}
+                        {% for al in assign_levels %}
                         <tr>
-                            <td class="align-center">{{value.number}}</td>
-                            <td class="text-primary">{{value.name}}</td>
-                            {% if value.satus == 'Complete' %}
-                            <td class=""><span class=" shadow-none badge badge-success badge-pill">Complete</span></td>
-                            {% else %}
-                            <td class=""><span class=" shadow-none badge badge-info badge-pill">Pending</span></td>
-                            {% endif %}
-                            <td><a href="{% url 'Lesson:Quiz' value.id %}" class="btn btn-success">Quiz</a></td>
+                            <td class="align-center">{{al.user.name}}</td>
+                            <td class="align-center text-primary">{{al.Level.number}}</td>
+                            <td class="align-center text-primary">{{al.Level.name}}</td>
+                            <td><a href="#" class="btn btn-danger">Delete</a></td>
                         </tr>
                         {% endfor %}
 
@@ -49,6 +45,10 @@
                 </table>
             </div>
         </div>
+    </div>
+
+    <div>
+        <a class="btn btn-warning" href="{% url 'Lesson:AssignLevelsView' %}">Assign Levels to User</a>
     </div>
 </div>
 

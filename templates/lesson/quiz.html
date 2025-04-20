@@ -20,7 +20,7 @@
         </div>
 
         <form action="{% url 'Lesson:Quiz' level_no %}" method="post">
-
+            {% csrf_token %}
             {% for question in question_list %}
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -36,25 +36,25 @@
 
                             <div class="n-chk">
                                 <label class="new-control new-radio radio-classic-success">
-                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}" value="{{question.option_1}}">
                                   <span class="new-control-indicator"></span>{{question.option_1}}
                                 </label>
                             </div>
                             <div class="n-chk">
                                 <label class="new-control new-radio radio-classic-success">
-                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}" value="{{question.option_2}}">
                                   <span class="new-control-indicator"></span>{{question.option_2}}
                                 </label>
                             </div>
                             <div class="n-chk">
                                 <label class="new-control new-radio radio-classic-success">
-                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}" value="{{question.option_3}}">
                                   <span class="new-control-indicator"></span>{{question.option_3}}
                                 </label>
                             </div>
                             <div class="n-chk">
                                 <label class="new-control new-radio radio-classic-success">
-                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}">
+                                  <input type="radio" class="new-control-input" name="radio-{{question.id}}" value="{{question.option_4}}">
                                   <span class="new-control-indicator"></span>{{question.option_4}}
                                 </label>
                             </div>
@@ -64,6 +64,9 @@
                     </div>
                 </div>
             {% endfor %}
+
+             <!-- This will hold the token -->
+            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
             <button class="btn btn-button-7 btn-rounded" type="submit">Submit Answer</button>
 
@@ -78,5 +81,13 @@
 {% endblock %}
 
 {% block custom_js %}
+<script src="https://www.google.com/recaptcha/api.js?render={{ captcha_sitekey }}"></script>
 
+<script>
+grecaptcha.ready(function() {
+    grecaptcha.execute('{{ captcha_sitekey }}', {action: 'submit'}).then(function(token) {
+        document.getElementById('g-recaptcha-response').value = token;
+    });
+});
+</script>
 {% endblock %}

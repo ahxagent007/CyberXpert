@@ -20,7 +20,7 @@ class CustomUser(BaseUserManager):
         if not email:
             raise ValueError(gettext_lazy('Email is required'))
         other_fields.setdefault('is_active', True)
-        other_fields.setdefault('role', 'RESEARCHER')
+        other_fields.setdefault('role', 'USER')
         email = self.normalize_email(email)
         #password = hashlib.md5(password.encode('utf-8')).hexdigest()
         user = self.model(email=email, **other_fields)
@@ -41,11 +41,11 @@ class UserAccount(AbstractBaseUser):
 
     class Role(models.TextChoices):
         ADMIN = 'ADMIN', 'Admin'
-        RESEARCHER = 'USER', 'User'
+        USER = 'USER', 'User'
 
-    base_role = Role.RESEARCHER
+    base_role = Role.USER
 
-    role = models.CharField(max_length=50, default='RESEARCHER', choices=Role.choices)
+    role = models.CharField(max_length=50, default='USER', choices=Role.choices)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']

@@ -170,7 +170,7 @@
                                 <a href="{% url 'Lesson:LessonList' %}"> Lesson List </a>
                             </li>
                             <li>
-                                <a href="#"> Lesson Management </a>
+                                <a href="{% url 'Lesson:AssignLevelsList' %}"> Lesson Management </a>
                             </li>
 
                         </ul>
@@ -193,28 +193,28 @@
                                 <a href="#ui-knolwedge" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"> Knowledge Hub <i class="flaticon-right-arrow"></i> </a>
                                 <ul class="collapse list-unstyled sub-submenu" id="ui-knolwedge" data-parent="#ui-knolwedge">
                                     <li>
-                                        <a href="#"> Security and Risk </br>Management </a>
+                                        <a href="{% url 'Library:domain' 1 %}"> Security and Risk </br>Management </a>
                                     </li>
                                     <li>
-                                        <a href="#"> Asset Security </a>
+                                        <a href="{% url 'Library:domain' 2 %}"> Asset Security </a>
                                     </li>
                                     <li>
-                                        <a href="#l"> Security Architecture </br>and Engineering </a>
+                                        <a href="{% url 'Library:domain' 3 %}"> Security Architecture </br>and Engineering </a>
                                     </li>
                                     <li>
-                                        <a href="#"> Communication </br>and Network Security </a>
+                                        <a href="{% url 'Library:domain' 4 %}"> Communication </br>and Network Security </a>
                                     </li>
                                     <li>
-                                        <a href="#"> Identity and Access </br>Management (IAM) </a>
+                                        <a href="{% url 'Library:domain' 5 %}"> Identity and Access </br>Management (IAM) </a>
                                     </li>
                                     <li>
-                                        <a href="#"> Security Assessment </br>and Testing </a>
+                                        <a href="{% url 'Library:domain' 6 %}"> Security Assessment </br>and Testing </a>
                                     </li>
                                     <li>
-                                        <a href="#"> Security Operations </a>
+                                        <a href="{% url 'Library:domain' 7 %}"> Security Operations </a>
                                     </li>
                                     <li>
-                                        <a href="#"> Software Development </br>Security </a>
+                                        <a href="{% url 'Library:domain' 8 %}"> Software Development </br>Security </a>
                                     </li>
 
                                 </ul>

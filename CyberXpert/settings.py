@@ -48,10 +48,12 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',  # For static devices (like backup tokens)
     'django_otp.plugins.otp_totp',  # For TOTP (e.g., Google Authenticator)
     'two_factor',
-    'ckeditor'
+    'ckeditor',
+    #'captcha',
 ]
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -150,3 +152,6 @@ AUTH_USER_MODEL = 'UserManager.UserAccount'
 
 LOGIN_URL = 'two_factor:login'
 LOGIN_REDIRECT_URL = '/'
+
+RECAPTCHA_PUBLIC_KEY = os.getenv("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = os.getenv("RECAPTCHA_PRIVATE_KEY")

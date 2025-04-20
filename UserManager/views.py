@@ -60,16 +60,17 @@ def Logout(request):
 
     return redirect('UserManager:Login')
 
-#@admin_access_only()
+@admin_access_only()
 def CreateUser(request):
     if request.method == 'POST':
         form = UserAccountForm(request.POST)
         if form.is_valid():
             #form.save()
+            name = request.POST.get('name')
             email = request.POST.get('email')
             password = request.POST.get('password')
 
-            user_obj = UserAccount.objects.create_user(email=email, password=password)
+            user_obj = UserAccount.objects.create_user(name=name, email=email, password=password)
             return redirect('UserManager:UserList')  # Redirect to a view that shows all books
     else:
         form = UserAccountForm()

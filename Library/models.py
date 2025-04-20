@@ -4,7 +4,7 @@ from ckeditor.fields import RichTextField
 
 
 class Domain(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     domain_no = models.IntegerField(unique=True)
     name = models.CharField(max_length=255)
     body = RichTextField()
