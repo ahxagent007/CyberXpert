@@ -8,6 +8,8 @@ from django.contrib import messages
 
 def Login(request):
 
+    return redirect('two_factor:login')
+
     if request.method == 'POST':
         # Login user
         data = request.POST
