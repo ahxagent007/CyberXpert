@@ -11,7 +11,10 @@ def Dashboard(request):
     quic_taken_count = QuizPaper.objects.filter(user=user).count()
     lesson_done = QuizPaper.objects.filter(user=user).values('level').distinct().count()
 
-    level_progress = int((lesson_done/level_count)*100)
+    try:
+        level_progress = int((lesson_done / level_count) * 100)
+    except:
+        level_progress  = 0
 
     data = {
         'level_progress': level_progress,

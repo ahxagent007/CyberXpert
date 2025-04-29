@@ -7,6 +7,4 @@ urlpatterns=[
     path('assign', AssignLevelsView, name='AssignLevelsView'),
     path('assigned/list', AssignLevelsList, name='AssignLevelsList'),
 
-
-
 ]
