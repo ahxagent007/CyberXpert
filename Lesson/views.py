@@ -57,6 +57,8 @@ def Quiz(request, level_no):
                 if user_answer == q.answer:
                     total_correct += 1
 
+                q.user_answer = user_answer
+
 
             user = UserAccount.objects.get(id=request.user.id)
             answer_no = len(QuizPaper.objects.filter(level=level, user=user)) + 1
@@ -65,7 +67,14 @@ def Quiz(request, level_no):
                                      total_answered=total_answered, user=user,
                                      answer_no=answer_no)
 
-            return redirect('Dashboard:Message')
+            #return redirect('Dashboard:Message')
+            data = {
+                'question_list': question_list,
+                'level': level.name,
+                'level_description': level.description,
+                'level_no': level_no
+            }
+            return render(request=request, template_name='lesson/quiz_result.html', context=data)
 
         else:
             data = {
@@ -78,6 +87,21 @@ def Quiz(request, level_no):
             }
             # Possible bot or verification failed
             return render(request, template_name = 'lesson/quiz.html', context = data)
+
+@login_access_only()
+def QuizResult(request):
+    level_no = 1
+    question_list = Questions.objects.filter(level_number=level_no)
+    level = Level.objects.get(number=level_no)
+
+    data = {
+        'question_list': question_list,
+        'level': level.name,
+        'level_description': level.description,
+        'level_no': level_no
+    }
+    return render(request=request, template_name='lesson/quiz_result.html', context=data)
+
 
 
 @login_access_only()
